@@ -56,7 +56,7 @@ public class JobData {
         loadData();
 
         ArrayList allJobsCopy = new ArrayList(allJobs); // it works for immutable objects
-        // TODO: is it ok for HM<S,S> ?
+
         return allJobsCopy;
     }
 
@@ -158,3 +158,5 @@ public class JobData {
     }
 
 }
+
+// Search locations for cities, Search all for skills

@@ -16,7 +16,7 @@ public class TechJobs {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
-        columnChoices.put("core competency", "Skill");
+        columnChoices.put("core competency", "Core Competency");
         columnChoices.put("employer", "Employer");
         columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");
@@ -62,7 +62,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println(JobData.findByValue(searchTerm));
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -113,18 +113,19 @@ public class TechJobs {
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         // someJobs holds jobs to print passed by other functions
 
-        if (someJobs.isEmpty() ) {
-            System.out.println("These are not the jobs you are looking for");
-        } else {
-            System.out.println("***************");
+        if (someJobs.isEmpty()) {
+            System.out.println("There are no jobs that match your search. Please try another query.");
+        }
 
-            for (HashMap<String, String> someJob : someJobs) { // grab each job HashMap to print
-                // loop through all fields of job HashMap and print all data for every job there
-                for (Map.Entry<String, String> jobFields : someJob.entrySet()) {
-                    System.out.println(jobFields.getKey() + ": " + jobFields.getValue());
-                }
-                System.out.println("***************");
+        // add nested for loop to print out each item in correct formatting
+        for(int i = 0; i < someJobs.size(); i++) {
+            System.out.println("\n*****");
+
+            for(Map.Entry<String, String> job : someJobs.get(i).entrySet() ) {
+                System.out.println(job.getKey() + ": " + job.getValue());
             }
+            System.out.println("*****");
+
         }
     }
 }
